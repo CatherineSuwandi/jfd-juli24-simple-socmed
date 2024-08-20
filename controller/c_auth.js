@@ -29,7 +29,10 @@ proses_login: async function(req,res) {
     if (user.length > 0 ) {
         let passwordCocok = bcrypt.compareSync(password, user[0].password)
         if (passwordCocok) {
-            // kita arahkan ke halaman feed
+            // set data session user yg login
+            req.session.user = user
+
+            // arahkan ke halaman feed
             res.redirect('/feed')
         } else {
             let message = 'Password incorrect'
