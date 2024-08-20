@@ -13,10 +13,14 @@ let cari_username   = function(username) {
 module.exports =
 {
     form_login: function(req,res) {
-        let dataview = {
-            message: req.query.msg
+        if (req.session.user) {
+            res.redirect('/feed')
+        } else {
+            let dataview = {
+                message: req.query.msg
+            }
+            res.render('auth/form-login', dataview)
         }
-        res.render('auth/form-login', dataview)
     },
 
 
@@ -42,6 +46,14 @@ proses_login: async function(req,res) {
         let message = 'User not found, please Sign Up'
         res.redirect(`/login?msg=${message}`)
     }
-}
+},
 
+    cek_login: function(req,res,next) {
+        if (req.session.user) {
+            next()
+        } else {
+            let message = 'Session has ended, please login again'
+            res.redirect(`/login?msg=${message}`)
+        }
+    }
 }
