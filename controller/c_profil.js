@@ -8,6 +8,7 @@ module.exports =
         let dataview = {
             req: req,
             moment: moment,
+            message: req.query.msg,
         }
         res.render('profil/index', dataview)
     },
@@ -32,7 +33,7 @@ module.exports =
                 req.session.user[0].nama_lengkap    = req.body.form_namalengkap
                 req.session.user[0].bio             = req.body.form_bio
                 // kembalikan ke halaman profil
-                res.redirect(`/profil?msg=berhasil edit profi`)
+                res.redirect(`/profil?msg=berhasil edit profil`)
             }
         } catch (error) {
             throw error
