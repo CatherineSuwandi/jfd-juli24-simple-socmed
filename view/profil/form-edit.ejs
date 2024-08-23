@@ -10,20 +10,20 @@
                     <div class="row">
                         <div class="col-lg-7  mb-3">
                             <label class="form-label">Nama Lengkap</label>
-                            <input type="text" class="form-control" name="form_namalengkap">
+                            <input type="text" class="form-control" name="form_namalengkap" value="<%= req.session.user[0].nama_lengkap %>">
                         </div>
-                    <div class=" col-lg-7 mb-3">
-                        <label class="form-label">Bio</label>
-                        <textarea name="form_bio" class="form-control"></textarea>
+                        <div class=" col-lg-7 mb-3">
+                            <label class="form-label">Bio</label>
+                            <textarea name="form_bio" class="form-control"><%= req.session.user[0].bio %></textarea>
+                        </div>
                     </div>
             </div>
+            <button type="submit" class="btn btn-primary">
+                <i class="fa-solid fa-save me-1"></i> Update
+            </button>
+            </form>
         </div>
-        <button type="submit" class="btn btn-primary">
-            <i class="fa-solid fa-save me-1"></i> Update
-        </button>
-        </form>
     </div>
-</div>
 
 
 <%- include('../template/head-end') %>
