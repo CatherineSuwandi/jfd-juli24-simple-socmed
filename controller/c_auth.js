@@ -55,5 +55,11 @@ proses_login: async function(req,res) {
             let message = 'Session has ended, please login again'
             res.redirect(`/login?msg=${message}`)
         }
+    },
+
+    proses_logout: function(req,res) {
+        req.session.destroy((err)=>{
+            res.redirect('/')
+        })
     }
 }
