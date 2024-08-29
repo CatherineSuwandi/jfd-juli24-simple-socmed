@@ -1,15 +1,18 @@
 const m_user        = require('./../model/m_user')
+const m_post        = require('./../model/m_post')
 const path          = require('path')
 const moment        = require('moment')
 moment.locale('id')
 
 module.exports = 
 {
-    index: function(req,res) {
+    index: async function(req,res) {
         let dataview = {
             req: req,
             moment: moment,
             message: req.query.msg,
+            postingan: await m_post.get_all(),
+
         }
         res.render('profil/index', dataview)
     },
