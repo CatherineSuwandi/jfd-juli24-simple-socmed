@@ -1,6 +1,7 @@
 const m_user        = require('./../model/m_user')
 const m_post        = require('./../model/m_post')
 const path          = require('path')
+const db            = require('../config/database').db
 const moment        = require('moment')
 moment.locale('id')
 
@@ -12,6 +13,8 @@ module.exports =
             moment: moment,
             message: req.query.msg,
             postingan: await m_post.get_all(),
+            currentUser : req.session.user ? req.session.user[0] : null
+            
 
         }
         res.render('profil/index', dataview)
@@ -24,10 +27,6 @@ module.exports =
         res.render('profil/form-edit', dataview)
     },
     
-    proses_update: function (req,res) {
-        console.log(req.body)
-    },
-
     
     proses_update: async function(req,res){
         try {
@@ -80,4 +79,26 @@ module.exports =
             }
         })
     },
+
+    peer: async function (req,res) {
+
+        // ambil id yg dikirim via url
+        let idu = req.params.id_user
+    
+        // setelah itu kirim ke proses request data mysql
+        let dataview = {
+            poster  : await m_user.get_oneUser(idu),
+            moment: moment,
+            message: req.query.msg,
+
+
+
+
+        }
+        res.render('profil/peer', dataview)
+    },
+
+
+   
+  
 }

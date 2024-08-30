@@ -41,10 +41,18 @@ app.get('/login', c_auth.form_login)
 app.post('/proses-login', c_auth.proses_login)
 app.get('/feed', cek_login, c_feed.index)
 app.get('/profil', cek_login, c_profil.index)
+
+app.get('/signup', c_auth.form_signup)
+app.post('/proses-signup', c_auth.proses_signup)
+
+app.get('/logout', c_auth.proses_logout)
+
 app.get('/profil/edit', cek_login, c_profil.form_edit)
 app.post('/profil/proses-update', cek_login, c_profil.proses_update)
 app.get('/profil/edit-foto', cek_login, c_profil.form_edit_foto)
 app.post('/profil/proses-update-foto', cek_login, c_profil.proses_update_foto)
+
+app.get('/profil/peer/:id_user', cek_login, c_profil.peer)
 
 app.get('/posting', cek_login, c_posting.index)
 app.post('/posting/tambah', cek_login, c_posting.proses_insert)

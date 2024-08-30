@@ -30,4 +30,25 @@ module.exports =
             [data, id_user]
         ))
     },
+
+    insert_user: function(user) {
+        let data = {
+            username: user.username,
+            password: user.password,
+            nama_lengkap: user.nama_lengkap,
+        };
+        return eksekusi(mysql.format(
+            `INSERT INTO user SET ?`,
+            [data]
+        ));
+    },
+
+    get_oneUser: function(idu) {
+        return eksekusi(mysql.format(
+            `SELECT * FROM user WHERE id = ?`,
+        [idu]
+        ))
+    },
+    
+
 }

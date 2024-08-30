@@ -38,12 +38,14 @@
                   <div class="card shadow-sm mb-5">
 
                       <div>
-                        <% if (!req.session.user[0].foto) { %>
+                        <% if (!postingan[i].foto) { %>
                             <img src="/gambar/defaultprofile.png"  class="rounded-circle p-2" height="50" style="object-fit: cover;" alt="...">
                         <% } else { %>
                             <img src="/upload/<%= postingan[i].foto %>" class="rounded-circle border border-info p-1 m-2" height="50" width="50" style="object-fit: cover;" alt="...">
                         <% } %>
-                          <b><%= postingan[i].username %></b>
+                        <a href="/profil/peer/<%= postingan[i].created_by %>" class="text-black" >
+                            <b><%= postingan[i].username %></b>
+                        </a>
                           <span class="float-end p-3">
                               <i class="fa-solid fa-ellipsis"></i>
                           </span>
